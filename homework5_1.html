@@ -1,0 +1,25 @@
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    table tr td {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr id="rowDisplay"></tr>
+  </table>
+  <script>
+    axios.get("https://reqres.in/api/users/").then(function (response) {
+      let rowDisplay = document.getElementById("rowDisplay")
+      let textHtml = ""
+      for (let i = 0; i < response.data.data.length; i++) {
+        let img = "<p><img src='" + response.data.data[i].avatar + "'></p>"
+        textHtml += "<td>" + response.data.data[i].first_name + img + "</td>"
+      }
+      rowDisplay.innerHTML = textHtml
+    })
+  </script>
+</body>
